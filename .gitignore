@@ -7,5 +7,4 @@
 /rr*
 /protoc-gen-php-grpc*
 
-/.env
 /*.cache
