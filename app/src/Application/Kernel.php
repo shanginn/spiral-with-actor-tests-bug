@@ -113,6 +113,9 @@ class Kernel extends \Spiral\Framework\Kernel
 
             // Configure route groups, middleware for route groups
             Bootloader\RoutesBootloader::class,
+
+            \Spiral\Bootloader\Auth\HttpAuthBootloader::class,
+            \Spiral\Cycle\Bootloader\AuthTokensBootloader::class,
         ];
     }
 

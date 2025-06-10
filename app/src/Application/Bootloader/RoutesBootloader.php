@@ -6,8 +6,10 @@ namespace App\Application\Bootloader;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Spiral\Auth\Middleware\AuthTransportMiddleware;
 use Spiral\Bootloader\Http\RoutesBootloader as BaseRoutesBootloader;
 use Spiral\Cookies\Middleware\CookiesMiddleware;
+use Spiral\Core\Container\Autowire;
 use Spiral\Csrf\Middleware\CsrfMiddleware;
 use Spiral\Debug\Middleware\DumperMiddleware;
 use Spiral\Debug\StateCollector\HttpCollector;
@@ -47,6 +49,9 @@ final class RoutesBootloader extends BaseRoutesBootloader
                 SessionMiddleware::class,
                 CsrfMiddleware::class,
                 ValidationHandlerMiddleware::class
+            ],
+            'api' => [
+                new Autowire(AuthTransportMiddleware::class, ['transportName' => 'header']),
             ],
         ];
     }
